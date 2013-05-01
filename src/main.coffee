@@ -3,8 +3,9 @@ require.config
     'spec': '../spec'
 define [
   'widget/textarea'
-  'spec/init'
-], (Textarea) ->
+  'sync/webrtc'
+  #'spec/init'
+], (Widget, Sync) ->
   
   $ ->
-    new Textarea("#textarea1")
+    new Widget("#textarea1")
