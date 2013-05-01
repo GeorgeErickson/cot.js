@@ -58,13 +58,13 @@ module.exports = (grunt) ->
         }]
 
       spec:
-        files: [
+        files: [{
           expand: true
-          cwd: 'test/spec'
+          cwd: 'test/spec/'
           src: ['**/*.coffee']
-          dest: '.tmp/spec'
+          dest: '.tmp/spec/'
           ext: '.js'
-        ]
+        }]
 
     clean:
       temp: ['.tmp']

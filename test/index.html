@@ -6,21 +6,20 @@
     <link rel="stylesheet" href="lib/mocha/mocha.css">
 </head>
 <body>
+    <textarea id="textarea1"></textarea>
     <div id="mocha"></div>
     <script src="http://georgeerickson.github.io/mocha-favicon/mocha-favicon.min.js"></script>
     <script src="lib/mocha/mocha.js"></script>
     <script src="lib/chai.js"></script>
-    <script src="spec/setup.js"></script>
     <script src="lib/runner.js"></script>
     
 
     <!-- include source files here... -->
+    <script src="vendor/diff_match_patch_uncompressed.js"></script>
+    <script src="vendor/uuid.js"></script>
+    <script src="vendor/pubsub.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script data-main="src/main" src="vendor/require.min.js"></script>
-
-    <!-- include spec files here... -->
-    <script src="spec/test.js"></script>
-
-    <script>start_mocha_tests();</script>
 
 </body>
 </html>

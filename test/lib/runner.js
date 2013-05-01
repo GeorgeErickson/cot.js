@@ -1,3 +1,10 @@
+mocha.setup({
+  ui: 'bdd',
+  ignoreLeaks: true
+});
+
+expect = chai.expect;
+
 (function() {
   window.start_mocha_tests = function(){
     window.runner = mocha.run();
