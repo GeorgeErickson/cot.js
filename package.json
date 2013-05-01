@@ -1,0 +1,22 @@
+{
+  "author": "George Erickson",
+  "name": "cot.js",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-coffeelint": "0.0.6",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-coffee": "~0.6.6",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-handlebars": "~0.5.8",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-copy-to": "~0.0.3",
+    "grunt-recess": "0.3.1",
+    "grunt-regarde": "~0.1.1",
+    "matchdep": "~0.1.2",
+    "underscore": "~1.4.4"
+  }
+}
