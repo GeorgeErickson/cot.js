@@ -2,19 +2,27 @@ require.config
   paths:
     'spec': '../spec'
 define [
+  'Events'
   'widget/ContentEditable'
-  'events'
+  'sync/LocalSync'
   #Tests
   'spec/init'
-], (ContentEditable, events) ->
+], (Events, ContentEditable, LocalSync) ->
   
-  window.w1 = new ContentEditable
-    el: "#widget-1"
 
-  window.w2 = new ContentEditable
-    el: "#widget-2"
+  for el in ['#widget-1', '#widget-2']
+    do (el) ->
+      u = uuid.v4()
+      
+      new ContentEditable
+        el: el
+        uuid: u
+
+      new LocalSync
+        uuid: u
 
 
-  PubSub.subscribe events.ROOT, (en, data)->
+
+  PubSub.subscribe Events.ROOT, (en, data)->
     console.log en, data
   

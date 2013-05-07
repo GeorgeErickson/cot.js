@@ -1,7 +1,7 @@
-define ['events'], (events) ->
+define ['Events'], (Events) ->
   class ShadowStore
-    constructor: ->
-      @versions = [""]
+    constructor: (initial) ->
+      @versions = [initial]
 
     ###
     Return shadow n, or last shadow if n is undefined.
@@ -17,13 +17,24 @@ define ['events'], (events) ->
     version: ->
       @versions.length
 
-  class DSCore
-    constructor: (options) ->
-      @options = options ? {}
-      @id = uuid()
-      @dmp = new diff_match_patch()
-      @dmp.Diff_Timeout = 0.5
-      @shadows = new ShadowStore
+  class DSCore extends Events.Mixin
+    defaults:
+      uuid: uuid.v4()
+      dmp: new diff_match_patch()
+    
+    dmp_settings:
+      Diff_Timeout: 0.5
+      Match_Distance: 1000
+      Match_Threshold: 0.6
+    
+    constructor: (@options) ->
+      _.extend @, @defaults, options
+      _.extend @dmp, @dmp_settings
+      @shadows = new ShadowStore ""
+      super
+
+    events:
+      'APPLY': 'onapply'
 
     createDiff: ->
       diffs = @dmp.diff_main @getShadowData(), @getClientData(), true
@@ -38,23 +49,31 @@ define ['events'], (events) ->
     getClientData: ->
       throw Error 'Must be implmented by subclass'
 
+    setClientData: ->
+      throw Error 'Must be implmented by subclass'
+
+
     getShadowData: ->
       @shadows.get()
 
     setShadowData: (data) ->
       @shadows.add data
 
+    getVersion: ->
+      @shadows.version()
+
+    onapply: ->
+      throw Error 'Must be implemented by subclass'
 
     change: ->
       diffs = @createDiff()
-      text = @getClientData()
+      data = @getClientData()
       changed = diffs.length != 1 or diffs[0][0] != DIFF_EQUAL
 
       if changed
-        PubSub.publish events.CHANGE,
-          id: @id
-          text: text #TODO - Make short hash
-          diffs: @dmp.diff_toDelta(diffs)
-          version: @shadows.length
+        PubSub.publish Events.CHANGE,
+          uuid: @uuid
+          diffs: diffs
+          version: @getVersion()
 
-        @shadows.addShadow text
+        @setShadowData data
