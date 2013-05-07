@@ -24,7 +24,7 @@ module.exports = (grunt) ->
         tasks: ['livereload']
 
       vendor:
-        files: ['vendor/*.js']
+        files: ['vendor/*']
         tasks: ['copy:vendor']
 
     #lint coffeescript
@@ -43,7 +43,7 @@ module.exports = (grunt) ->
           expand: true
           dot: true
           cwd: 'vendor'
-          src: '*.js'
+          src: '*'
           dest: '.tmp/vendor'
         ]
 

@@ -1,6 +1,8 @@
 require.config
+  baseUrl: 'src'
   paths:
     'spec': '../spec'
+
 define [
   'Events'
   'widget/ContentEditable'

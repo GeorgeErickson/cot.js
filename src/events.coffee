@@ -1,5 +1,5 @@
 ROOT = 'ds'
-
+USER = 'ds.user'
 define ->
   Events = 
     ROOT: ROOT
@@ -9,6 +9,9 @@ define ->
 
     # Incoming change should be applied.
     APPLY: "#{ ROOT }.apply"
+
+    COLLAB_ADD: "#{ USER }.collab.add"
+    COLLAB_REMOVE: "#{ USER }.collab.remove"
 
   class Events.Mixin
     constructor: ->
