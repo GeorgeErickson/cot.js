@@ -552,7 +552,7 @@ module.exports = Progress;
 function Progress() {
   this.percent = 0;
   this.size(0);
-  this.fontSize(11);
+  this.fontSize(5);
   this.font('helvetica, arial, sans-serif');
 }
 
@@ -2309,7 +2309,7 @@ function HTML(runner, root) {
   root.appendChild(stat);
   root.appendChild(report);
 
-  if (progress) progress.size(40);
+  if (progress) progress.size(20);
 
   runner.on('suite', function(suite){
     if (suite.root) return;

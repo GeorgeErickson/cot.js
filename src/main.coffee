@@ -2,10 +2,19 @@ require.config
   paths:
     'spec': '../spec'
 define [
-  'widget/textarea'
-  'sync/webrtc'
-  #'spec/init'
-], (Widget, Sync) ->
+  'widget/ContentEditable'
+  'events'
+  #Tests
+  'spec/init'
+], (ContentEditable, events) ->
   
-  $ ->
-    new Widget("#textarea1")
+  window.w1 = new ContentEditable
+    el: "#widget-1"
+
+  window.w2 = new ContentEditable
+    el: "#widget-2"
+
+
+  PubSub.subscribe events.ROOT, (en, data)->
+    console.log en, data
+  

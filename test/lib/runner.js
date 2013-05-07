@@ -4,6 +4,7 @@ mocha.setup({
 });
 
 expect = chai.expect;
+chai.should();
 
 (function() {
   window.start_mocha_tests = function(){

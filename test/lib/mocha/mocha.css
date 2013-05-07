@@ -22,6 +22,7 @@ body {
   margin-top: 15px;
   font-size: 1em;
   font-weight: 200;
+  line-height: 24px;
 }
 
 #mocha h1 a {
@@ -46,6 +47,7 @@ body {
   font-size: 12px;
   font-weight: normal;
   cursor: pointer;
+  line-height: 20px;
 }
 
 #mocha .suite {
@@ -191,17 +193,22 @@ body {
 }
 
 #mocha-stats {
-  position: fixed;
-  top: 15px;
+  position: absolute;
+  top: 10px;
   right: 10px;
   font-size: 12px;
   margin: 0;
   color: #888;
+  margin-bottom: 10px;
 }
 
 #mocha-stats .progress {
   float: right;
   padding-top: 0;
+  overflow: inherit;
+  background-image: none;
+  box-shadow: none;
+  background-color: inherit;
 }
 
 #mocha-stats em {

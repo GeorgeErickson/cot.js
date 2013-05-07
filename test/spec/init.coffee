@@ -1,5 +1,5 @@
 define [
-  'spec/ops/base'
-  'spec/ops/insert'
+  'spec/core'
+  'spec/widget/Simple'
 ], ->
   start_mocha_tests()
