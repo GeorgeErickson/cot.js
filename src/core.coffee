@@ -19,7 +19,7 @@ define ['Events'], (Events) ->
 
   class DSCore extends Events.Mixin
     defaults:
-      uuid: uuid.v4()
+      uuid: Math.uuid()
       dmp: new diff_match_patch()
     
     dmp_settings:

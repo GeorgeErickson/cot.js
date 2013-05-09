@@ -1,7 +1,7 @@
 define ['Events'], (Events) ->
   class BaseSync extends Events.Mixin
     defaults:
-      uuid: uuid.v4()
+      uuid: Math.uuid()
 
     events:
       'CHANGE': 'onchange'

@@ -14,7 +14,7 @@ define [
 
   for el in ['#widget-1', '#widget-2']
     do (el) ->
-      u = uuid.v4()
+      u = Math.uuid()
       
       new ContentEditable
         el: el

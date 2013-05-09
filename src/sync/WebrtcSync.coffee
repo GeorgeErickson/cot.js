@@ -1,14 +1,8 @@
-define ['sync/BaseSync', 'Events', 'demo/user'], (BaseSync, Events, User) ->
-  class PeerSync extends BaseSync
-    constructor: ->
-      super
-      user = User.get_or_create()
-      @peer = new Peer(user.uuid, {key: 'p9yxh5qu9y17cik9'})
-      @collabs = user.collabs ? []
-      for c in @collabs
-        @attach_events @peer.connect c,
-          reliable: true
-      
+define ['Events'], (Events) ->
+  class PeerSync 
+    constructor: (uuid) ->
+      @uuid = uuid ? Math.uuid(8, 64)
+      @peer = new Peer(@uuid, {key: 'p9yxh5qu9y17cik9'})
       @peer.on 'connection', @attach_events
       @peer.on 'error', ->
         console.log arguments

@@ -7,16 +7,16 @@ define [
   'Events'
   'widget/ContentEditable'
   'sync/WebrtcSync'
-  'demo/user'
-  'demo/collaborators'
 ], (Events, Widget, Sync, User, CollabWidget) ->
-  user = User.get_or_create()
+  sync = new Sync
+  console.log sync.uuid
   
   DS =
     user: user
     widget: new Widget
       el: '#widget'
-      uuid: user.uuid
+      uuid: cid
+    
     sync: new Sync
       uuid: user.uuid
 
