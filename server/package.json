@@ -1,0 +1,15 @@
+{
+    "name": "p2p",
+    "version": "0.0.1-1",
+    "dependencies": {
+        "coffee-script": "",
+        "onramp": ""
+    },
+    "subdomain": "george55-p2p",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "engines": {
+        "node": "*"
+    }
+}
