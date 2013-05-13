@@ -3,7 +3,7 @@ require.config
 
 define [
   'Events'
-  'widget/ContentEditable'
+  'widget/Ace'
   'sync/WebrtcSync'
 ], (Events, Widget, Sync) ->
   widget = new Widget

@@ -10,7 +10,7 @@
   <div class="container">
     <h1>P2P Differential Synchronization Demo</h1>
     <div class="row">
-      <span id="widget" class="span9" contenteditable="true"></span>
+      <span id="widget" class="span9" style="height:200px;"></span>
     </div>
   </div>
 
@@ -19,12 +19,14 @@
   <script src="vendor/peer.js"></script>
 
   <!-- include source files here... -->
+  <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="vendor/diff_match_patch_uncompressed.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
   <script src="vendor/uuid.js"></script>
   <script src="vendor/pubsub.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/idbwrapper/1.1.0/idbstore.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="vendor/rangy-core.js"></script>
+  <script src="vendor/rangy-serializer.js"></script>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.marionette/1.0.1-bundled/backbone.marionette.js" defer></script>
