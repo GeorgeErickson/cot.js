@@ -916,7 +916,12 @@ Reliable.prototype._intervalSend = function(msg) {
   var self = this;
   msg = util.pack(msg);
   util.blobToBinaryString(msg, function(str) {
-    self._dc.send(str);
+    try {
+      self._dc.send(str);
+    } catch (e) {
+      self._dc.close();
+    }
+    
   });
   if (self._queue.length === 0) {
     clearTimeout(self._timeout);

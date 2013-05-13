@@ -6,7 +6,8 @@ define ['Events'], (Events) ->
         host: '18.181.4.144'
         port: 8080
         debug: false
-      
+
+
       @peer.on 'connection', @attach_events
 
       
@@ -52,29 +53,9 @@ define ['Events'], (Events) ->
           
           when 'replace'
             PubSub.publish Events.REPLACE, resp.data
-
-
-          
-        
-    
-    
-    onchange: (data) ->
-      #PubSub.publish Events.APPLY, data
-
-  # peer.on 'open', (id) ->
-  #   console.log id
-
-  # peer.on 'connection', (conn) ->
-  #   conn.on 'data', (data) ->
-  #     PubSub.publish 'apply', data
-
-  # window.add_peer = (id) ->
-  #   connection = peer.connect id
-
-  #   PubSub.subscribe 'op', (en, data) ->
-  #     connection.send data
+         
   
-  # PubSub.subscribe Events.COLLAB_ADD
+
 
   
 
