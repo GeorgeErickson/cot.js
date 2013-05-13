@@ -26,6 +26,7 @@ define ['widget/DomBase'], (DomBase) ->
 
     onapply: (data) ->
       @suppress = true
+  
       unless @getVersion() <= data.version
         console.error "Can't apply a delta on a mismatched shadow version."
 
@@ -45,8 +46,11 @@ define ['widget/DomBase'], (DomBase) ->
       oldClientData = @getClientData()
       result = @dmp.patch_apply patches, oldClientData
       #TODO - cursor preservation
+      cursor = @editor.getCursorPosition()
+      @doc.getLine cursor.row
       if oldClientData != result[0]
-        @editor.setValue result[0]
+        @editor.setValue result[0], 1
+        @editor.moveCursorToPosition cursor
       
 
     getClientData: ->
