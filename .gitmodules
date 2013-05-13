@@ -1,3 +1,0 @@
-[submodule "vendor/peerjs"]
-	path = vendor/peerjs
-	url = git@github.com:GeorgeErickson/peerjs.git
