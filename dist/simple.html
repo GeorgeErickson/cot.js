@@ -1,0 +1,38 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Mocha Spec Runner</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/mocha/mocha.css">
+    <link rel="stylesheet" href="lib/test.css">
+</head>
+<body>
+    <div class="container">
+    <div id="demo" class="row">
+        <span id="widget-1" class="span5" contenteditable="true"></span>
+        <span id="widget-2" class="span5" contenteditable="true"></span>
+    </div>
+    </div>
+    <div id="mocha"></div>
+    <script src="http://georgeerickson.github.io/mocha-favicon/mocha-favicon.min.js"></script>
+    <script src="lib/mocha/mocha.js"></script>
+    <script src="lib/chai.js"></script>
+    <script src="lib/runner.js"></script>
+    
+
+    <!-- include source files here... -->
+    <script src="vendor/diff_match_patch_uncompressed.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="http://cdn.peerjs.com/0/peer.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/store.js/1.3.7/store.min.js"></script>
+    <script src="vendor/uuid.js"></script>
+    <script src="vendor/pubsub.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/idbwrapper/1.1.0/idbstore.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script data-main="src/builds/simple" src="vendor/require.min.js"></script>
+
+</body>
+</html>

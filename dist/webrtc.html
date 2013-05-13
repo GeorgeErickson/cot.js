@@ -1,0 +1,45 @@
+
+
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>WebRTC Demo</title>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="vendor/jquery.bsmselect.css">
+  <link rel="stylesheet" href="lib/mocha/mocha.css">
+  <link rel="stylesheet" href="lib/test.css">
+</head>
+<body>
+  
+  <div class="container">
+    <div>
+      <i class="icon-user"></i> <code id="uuid-display"></code>
+    </div>
+    <div class="row">
+      <span id="widget" class="span9" contenteditable="true"></span>
+      <div class="span3" id="collab-widget">
+        
+      </div>
+    </div>
+  </div>
+
+
+  <!-- include source files here... -->
+  <script src="vendor/diff_match_patch_uncompressed.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/store.js/1.3.7/store.min.js"></script>
+  <script src="http://cdn.peerjs.com/0/peer.min.js"></script>
+  <script src="vendor/uuid.js"></script>
+  <script src="vendor/pubsub.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/idbwrapper/1.1.0/idbstore.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="vendor/jquery.bsmselect.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+  <script data-main="src/builds/webrtc" src="vendor/require.min.js"></script>
+
+</body>
+</html>
+
