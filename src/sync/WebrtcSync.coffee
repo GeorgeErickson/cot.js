@@ -3,8 +3,8 @@ define ['Events'], (Events) ->
     constructor: (uuid) ->
       @uuid = uuid ? Math.uuid(8, 64)
       @peer = new Peer @uuid,
-        host: 'p2pserver-george.dotcloud.com'
-        port: 80
+        host: '18.181.4.144'
+        port: 8080
         debug: true
       @peer.on 'connection', @attach_events
       @peer.on 'open', =>

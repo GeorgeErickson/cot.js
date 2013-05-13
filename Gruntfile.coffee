@@ -47,6 +47,23 @@ module.exports = (grunt) ->
           dest: '.tmp/vendor'
         ]
 
+      dist:
+        files: [
+          expand: true
+          dot: true
+          cwd: '.tmp'
+          src: '**/*'
+          dest: 'dist'
+        ]
+      test:
+        files: [
+          expand: true
+          dot: true
+          cwd: 'test'
+          src: '**/*'
+          dest: 'dist'
+        ]
+
     coffee:
       src:
         files: [{
@@ -90,11 +107,16 @@ module.exports = (grunt) ->
     'clean:temp',
     'coffeelint',
     'coffee',
-    'copy'
+    'copy:vendor'
   ]
   grunt.registerTask 'watch', [
     'build',
     'livereload-start',
     'connect:livereload',
     'regarde'
+  ]
+  grunt.registerTask 'dist', [
+    'build',
+    'copy:dist'
+    'copy:test'
   ]
