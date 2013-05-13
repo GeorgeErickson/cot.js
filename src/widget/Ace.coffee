@@ -49,7 +49,7 @@ define ['widget/DomBase'], (DomBase) ->
       cursor = @editor.getCursorPosition()
       @doc.getLine cursor.row
       if oldClientData != result[0]
-        @editor.setValue result[0], 1
+        @editor.setValue result[0], -1
         @editor.moveCursorToPosition cursor
       
 

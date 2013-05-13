@@ -3,7 +3,7 @@ define ['Events'], (Events) ->
     constructor: (@widget) ->
       @uuid = widget.uuid ? Math.uuid(8, 64)
       @peer = new Peer @uuid,
-        host: '18.181.4.144'
+        host: 'localhost'
         port: 8080
         debug: false
 
