@@ -96,6 +96,7 @@ module.exports = (grunt) ->
       livereload:
         options:
           port: 9001
+          hostname: '*'
           middleware: (connect, options) ->
             static_folder = (point) ->
               connect.static path.resolve(point)

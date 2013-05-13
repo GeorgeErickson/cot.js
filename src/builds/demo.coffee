@@ -6,11 +6,11 @@ define [
   'widget/ContentEditable'
   'sync/WebrtcSync'
 ], (Events, Widget, Sync) ->
-  uuid = Math.uuid(8, 64)
-  new Sync uuid
-  new Widget
+  widget = new Widget
     el: '#widget'
-    uuid: uuid
+    uuid: Math.uuid(8, 64)
+
+  new Sync widget
 
 
 

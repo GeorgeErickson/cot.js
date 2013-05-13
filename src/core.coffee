@@ -1,21 +1,19 @@
 define ['Events'], (Events) ->
   class ShadowStore
     constructor: (initial) ->
-      @versions = [initial]
+      @data = initial
+      @version = 0
 
     ###
     Return shadow n, or last shadow if n is undefined.
     ###
     get: (n) ->
-      if _.isUndefined n
-        return _.last @versions
-      @versions[n]
+      @data
 
     add: (text) ->
-      @versions.push text
+      @data = text
+      @version += 1
 
-    version: ->
-      @versions.length
 
   class DSCore extends Events.Mixin
     defaults:
@@ -34,7 +32,8 @@ define ['Events'], (Events) ->
       super
 
     events:
-      'APPLY': 'onapply'
+      'APPLY': 'onapply',
+      'REPLACE': 'onreplace'
 
     createDiff: ->
       diffs = @dmp.diff_main @getShadowData(), @getClientData(), true
@@ -60,7 +59,7 @@ define ['Events'], (Events) ->
       @shadows.add data
 
     getVersion: ->
-      @shadows.version()
+      @shadows.version
 
     onapply: ->
       throw Error 'Must be implemented by subclass'
@@ -70,7 +69,7 @@ define ['Events'], (Events) ->
       data = @getClientData()
       changed = diffs.length != 1 or diffs[0][0] != DIFF_EQUAL
 
-      if changed
+      if diffs and changed
         PubSub.publish Events.CHANGE,
           uuid: @uuid
           diffs: diffs

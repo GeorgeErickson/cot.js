@@ -1,34 +1,60 @@
 define ['Events'], (Events) ->
   class PeerSync 
-    constructor: (uuid) ->
-      @uuid = uuid ? Math.uuid(8, 64)
+    constructor: (@widget) ->
+      @uuid = widget.uuid ? Math.uuid(8, 64)
       @peer = new Peer @uuid,
         host: '18.181.4.144'
         port: 8080
-        debug: true
+        debug: false
+      
       @peer.on 'connection', @attach_events
-      @peer.on 'open', =>
 
+      
+      @peer.on 'open', =>
         #connect to all availible peers
         for p in _.without window.peers, @uuid
-          console.log p
-          @attach_events @peer.connect p,
+          conn = @peer.connect p,
             reliable: true
 
-      PubSub.subscribe Events.COLLAB_ADD, (data) =>
-        @attach_events @peer.connect data.uuid,
-          reliable: true
+          @attach_events conn
           
 
-    attach_events: (conn) ->
+          
+
+    attach_events: (conn) =>
+      conn.on 'open', =>
+        conn.send
+          type: 'sync'
+          data:
+            uuid: @uuid
+            version: @widget.getVersion()
+      
       # Send Data when changes occur
       PubSub.subscribe Events.CHANGE, (en, data) ->
         conn.send
-          APPLY: data
+          type: 'apply'
+          data: data
 
-      conn.on 'data', (data) ->
-        if data.APPLY
-          PubSub.publish Events.APPLY, data.APPLY
+      conn.on 'data', (resp) =>
+        switch resp.type
+          when 'apply'
+            PubSub.publish Events.APPLY, resp.data
+
+          when 'sync'
+            version = @widget.getVersion()
+            if version > resp.data.version
+              conn.send
+                type: 'replace'
+                data:
+                  uuid: @uuid
+                  text: @widget.getClientData()
+                  version: version
+          
+          when 'replace'
+            PubSub.publish Events.REPLACE, resp.data
+
+
+          
         
     
     

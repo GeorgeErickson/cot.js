@@ -7,9 +7,16 @@ define ['widget/DomBase'], (DomBase) ->
       @$el.on 'input', (e) =>
         @change()
 
+    onreplace: (data) ->
+      @setShadowData data.text
+      @$el.html data.text
+      console.log data
+      @shadows.version = data.version
+
     onapply: (data) ->
-      unless @getVersion() == data.version
+      unless @getVersion() <= data.version
         console.error "Can't apply a delta on a mismatched shadow version."
+
       shadow_data = @getShadowData()
 
       patches = @dmp.patch_make shadow_data, data.diffs
