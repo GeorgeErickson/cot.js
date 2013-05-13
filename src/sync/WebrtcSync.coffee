@@ -2,10 +2,18 @@ define ['Events'], (Events) ->
   class PeerSync 
     constructor: (uuid) ->
       @uuid = uuid ? Math.uuid(8, 64)
-      @peer = new Peer(@uuid, {key: 'p9yxh5qu9y17cik9'})
+      @peer = new Peer @uuid,
+        host: 'p2pserver-george.dotcloud.com'
+        port: 80
+        debug: true
       @peer.on 'connection', @attach_events
-      @peer.on 'error', ->
-        console.log arguments
+      @peer.on 'open', =>
+
+        #connect to all availible peers
+        for p in _.without window.peers, @uuid
+          console.log p
+          @attach_events @peer.connect p,
+            reliable: true
 
       PubSub.subscribe Events.COLLAB_ADD, (data) =>
         @attach_events @peer.connect data.uuid,

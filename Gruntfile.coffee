@@ -43,7 +43,7 @@ module.exports = (grunt) ->
           expand: true
           dot: true
           cwd: 'vendor'
-          src: '*'
+          src: '**/*'
           dest: '.tmp/vendor'
         ]
 
