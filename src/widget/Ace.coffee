@@ -27,12 +27,16 @@ define ['widget/DomBase'], (DomBase) ->
     onapply: (data) ->
       @suppress = true
   
-      unless @getVersion() <= data.version
+      unless @getVersion() == data.version
         console.error "Can't apply a delta on a mismatched shadow version."
+        if @getVersion() > data.version
+          console.error "#{@getVersion() - data.version}  Old diff that we don't need"
+        if @getVersion() < data.version
+          console.error "#{data.uuid} is ahead"
 
       shadow_data = @getShadowData()
-
-      patches = @dmp.patch_make shadow_data, data.diffs
+      diffs = @dmp.diff_fromDelta shadow_data, data.diffs
+      patches = @dmp.patch_make shadow_data, diffs
 
       # update local shadow to equal peer shadow
       peer_shadow = @dmp.patch_apply patches, shadow_data

@@ -3,7 +3,7 @@ define ['Events'], (Events) ->
     constructor: (@widget) ->
       @uuid = widget.uuid ? Math.uuid(8, 64)
       @peer = new Peer @uuid,
-        host: 'localhost'
+        host: 'george-pro.local'
         port: 8080
         debug: false
 
@@ -23,6 +23,7 @@ define ['Events'], (Events) ->
           
 
     attach_events: (conn) =>
+
       conn.on 'open', =>
         conn.send
           type: 'sync'
@@ -30,11 +31,11 @@ define ['Events'], (Events) ->
             uuid: @uuid
             version: @widget.getVersion()
       
-      # Send Data when changes occur
-      PubSub.subscribe Events.CHANGE, (en, data) ->
-        conn.send
-          type: 'apply'
-          data: data
+        # Send Data when changes occur
+        PubSub.subscribe Events.CHANGE, (en, data) ->
+          conn.send
+            type: 'apply'
+            data: data
 
       conn.on 'data', (resp) =>
         switch resp.type

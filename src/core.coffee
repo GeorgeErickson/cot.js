@@ -43,7 +43,7 @@ define ['Events'], (Events) ->
         @dmp.diff_cleanupSemantic diffs
         @dmp.diff_cleanupEfficiency diffs
 
-      diffs
+      @dmp.diff_toDelta diffs
 
     getClientData: ->
       throw Error 'Must be implmented by subclass'
